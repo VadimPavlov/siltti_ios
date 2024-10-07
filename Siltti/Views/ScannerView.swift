@@ -3,7 +3,7 @@ import AVFoundation
 
 public struct ScannerView: UIViewRepresentable {
     
-    public typealias Completion = (String) -> Void
+    public typealias Completion = (Data) -> Void
     
     let types: [AVMetadataObject.ObjectType]
     let completion: Completion
@@ -62,14 +62,10 @@ public struct ScannerView: UIViewRepresentable {
         
         public func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
             let object = metadataObjects.first as? AVMetadataMachineReadableCodeObject
-            if let scanned = object?.stringValue {
-                completion(scanned)
-            } else if let descriptor = object?.descriptor as? CIQRCodeDescriptor {
+            if let descriptor = object?.descriptor as? CIQRCodeDescriptor {
                 let payload = descriptor.errorCorrectedPayload
-                let rawData = descriptor.removeQrProtocolData(payload)
-                if let encoded = String(data: rawData, encoding: .isoLatin1) {
-                    completion(encoded)
-                }
+//                let rawData = descriptor.removeQrProtocolData(payload)
+                completion(payload)
             }
         }
     }

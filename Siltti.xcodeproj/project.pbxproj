@@ -6,14 +6,46 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		FD7F39AE2CAD53CF0056CFFD /* SilttiUniffiFFI.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7F39AD2CAD53CF0056CFFD /* SilttiUniffiFFI.xcframework */; };
+		FD7F39AF2CAD53CF0056CFFD /* SilttiUniffiFFI.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FD7F39AD2CAD53CF0056CFFD /* SilttiUniffiFFI.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		FD7F39AC2CAD53820056CFFD /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				FD7F39AF2CAD53CF0056CFFD /* SilttiUniffiFFI.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		FD1505652CAAC26700995EB8 /* Siltti.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Siltti.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		FD3D6C1B2CAAD95200B6D068 /* libgreetings.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libgreetings.a; path = rust/target/universal/release/libgreetings.a; sourceTree = "<group>"; };
+		FD7F39AD2CAD53CF0056CFFD /* SilttiUniffiFFI.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = SilttiUniffiFFI.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		FDD745E82CAEEDF900EDFE97 /* Exceptions for "Siltti" folder in "Siltti" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = FD1505642CAAC26700995EB8 /* Siltti */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		FD1505672CAAC26700995EB8 /* Siltti */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				FDD745E82CAEEDF900EDFE97 /* Exceptions for "Siltti" folder in "Siltti" target */,
+			);
 			path = Siltti;
 			sourceTree = "<group>";
 		};
@@ -24,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD7F39AE2CAD53CF0056CFFD /* SilttiUniffiFFI.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,7 +83,7 @@
 		FD3D6C1A2CAAD95200B6D068 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FD3D6C1B2CAAD95200B6D068 /* libgreetings.a */,
+				FD7F39AD2CAD53CF0056CFFD /* SilttiUniffiFFI.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -65,6 +98,7 @@
 				FD1505612CAAC26700995EB8 /* Sources */,
 				FD1505622CAAC26700995EB8 /* Frameworks */,
 				FD1505632CAAC26700995EB8 /* Resources */,
+				FD7F39AC2CAD53820056CFFD /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -87,6 +121,9 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
+				KnownAssetTags = (
+					New,
+				);
 				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
@@ -255,13 +292,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Siltti/Siltti.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Siltti/Preview Content\"";
-				DEVELOPMENT_TEAM = 98GTK98JLC;
+				DEVELOPMENT_TEAM = WTQFJ264ZG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/rust/include";
+				INFOPLIST_FILE = Siltti/Info.plist;
+				INFOPLIST_KEY_NFCReaderUsageDescription = "We need NFC to communicate with tag";
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need camera to scan QR codes";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -276,19 +315,15 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/rust/target/universal/release",
-				);
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ideasoft.siltti-poc";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ideasoft.siltti-poc-swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/rust/include/greetings.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				XROS_DEPLOYMENT_TARGET = 2.0;
@@ -301,13 +336,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Siltti/Siltti.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Siltti/Preview Content\"";
-				DEVELOPMENT_TEAM = 98GTK98JLC;
+				DEVELOPMENT_TEAM = WTQFJ264ZG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/rust/include";
+				INFOPLIST_FILE = Siltti/Info.plist;
+				INFOPLIST_KEY_NFCReaderUsageDescription = "We need NFC to communicate with tag";
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need camera to scan QR codes";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -322,19 +359,15 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/rust/target/universal/release",
-				);
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ideasoft.siltti-poc";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ideasoft.siltti-poc-swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/rust/include/greetings.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				XROS_DEPLOYMENT_TARGET = 2.0;
