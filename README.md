@@ -6,10 +6,10 @@
 3. It will create `SilttiUniffiFFI.xcframework` and `SilttiUniffi.swift`, add them into iOS project
 
 ## iOS
-1. Run project on real device, supporting iOS 16+, allow camera permission
-2. On first launch, open Manage Networks and add defaults (up to 3 networks)
-3. On main screen scan QR code with payload or send blank payload
-4. Use `Status/Read/Write` buttons for `NDEF Status/NDEF Message/Write APDU with payload`
+1. Run project on a real device supporting iOS 16+. Allow camera permission
+2. On first launch, open Manage Networks and tap to add defaults (up to 3 networks)
+3. From main screen scan QR code with payload or send blank payload
+4. Use `Status/Read/Write` buttons for getting `NDEF Status/NDEF Message/Write APDU with payload` in endless cycle (until error is triggered)
 
 ## Links
 https://metadata.parity.io/#/polkadot
