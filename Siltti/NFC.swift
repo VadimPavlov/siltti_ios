@@ -97,38 +97,4 @@ final class NFC: NSObject, ObservableObject, NFCNDEFReaderSessionDelegate {
         self.tags = records.joined(separator: "\n")
 
     }
-    
 }
-extension NFCTypeNameFormat {
-    var name: String {
-        switch self {
-        case .empty: "Empty"
-        case .nfcWellKnown: "NFC Well Known"
-        case .media: "Media"
-        case .absoluteURI: "Absolute URI"
-        case .nfcExternal: "NFC External"
-        case .unknown: "Unknown"
-        case .unchanged: "Unchanged"
-        @unknown default: "New Unknown"
-        }
-    }
-}
-
-extension NFCNDEFStatus {
-    var name: String {
-        switch self {
-        case .notSupported: "Not Supported"
-        case .readWrite: "Read Write"
-        case .readOnly: "Read Only"
-        @unknown default: "Unknown"            
-        }
-    }
-}
-//
-//extension Sequence {
-//    func asyncForEach(_ op: (Element) async throws -> Void) async rethrows {
-//        for e in self {
-//            try await op(e)
-//        }
-//    }
-//}

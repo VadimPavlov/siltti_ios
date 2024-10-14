@@ -1,6 +1,6 @@
 import SwiftUI
 
-typealias TransmitData = [Data]
+typealias TransmitData = Action
 
 struct TransmitScreen: View {
     @StateObject var nfc: NFC2
