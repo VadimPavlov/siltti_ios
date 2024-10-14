@@ -12,13 +12,12 @@
 		FD9998D72CB6CF9A00E1EAF5 /* TransmitScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9998CB2CB6CF9A00E1EAF5 /* TransmitScreen.swift */; };
 		FD9998D82CB6CF9A00E1EAF5 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9998CD2CB6CF9A00E1EAF5 /* ScannerView.swift */; };
 		FD9998D92CB6CF9A00E1EAF5 /* SilttiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9998D42CB6CF9A00E1EAF5 /* SilttiApp.swift */; };
-		FD9998DA2CB6CF9A00E1EAF5 /* NFC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9998D12CB6CF9A00E1EAF5 /* NFC.swift */; };
 		FD9998DB2CB6CF9A00E1EAF5 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9998C82CB6CF9A00E1EAF5 /* MainScreen.swift */; };
 		FD9998DC2CB6CF9A00E1EAF5 /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9998C72CB6CF9A00E1EAF5 /* Destination.swift */; };
 		FD9998DD2CB6CF9A00E1EAF5 /* NewAddressScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9998CA2CB6CF9A00E1EAF5 /* NewAddressScreen.swift */; };
 		FD9998DE2CB6CF9A00E1EAF5 /* SilttiUniffi.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9998D52CB6CF9A00E1EAF5 /* SilttiUniffi.swift */; };
 		FD9998DF2CB6CF9A00E1EAF5 /* NetworksScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9998C92CB6CF9A00E1EAF5 /* NetworksScreen.swift */; };
-		FD9998E02CB6CF9A00E1EAF5 /* NFC2.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9998D22CB6CF9A00E1EAF5 /* NFC2.swift */; };
+		FD9998E02CB6CF9A00E1EAF5 /* NFC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9998D22CB6CF9A00E1EAF5 /* NFC.swift */; };
 		FD9998E22CB6CF9A00E1EAF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD9998CF2CB6CF9A00E1EAF5 /* Assets.xcassets */; };
 		FD9998E32CB6CF9A00E1EAF5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD9998C52CB6CF9A00E1EAF5 /* Preview Assets.xcassets */; };
 		FD9998E62CB6CFB800E1EAF5 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9998E52CB6CFB800E1EAF5 /* Utils.swift */; };
@@ -50,13 +49,12 @@
 		FD9998CB2CB6CF9A00E1EAF5 /* TransmitScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransmitScreen.swift; sourceTree = "<group>"; };
 		FD9998CD2CB6CF9A00E1EAF5 /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
 		FD9998CF2CB6CF9A00E1EAF5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		FD9998D02CB6CF9A00E1EAF5 /* Info2.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info2.plist; sourceTree = "<group>"; };
-		FD9998D12CB6CF9A00E1EAF5 /* NFC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFC.swift; sourceTree = "<group>"; };
-		FD9998D22CB6CF9A00E1EAF5 /* NFC2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFC2.swift; sourceTree = "<group>"; };
+		FD9998D22CB6CF9A00E1EAF5 /* NFC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFC.swift; sourceTree = "<group>"; };
 		FD9998D32CB6CF9A00E1EAF5 /* Siltti.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Siltti.entitlements; sourceTree = "<group>"; };
 		FD9998D42CB6CF9A00E1EAF5 /* SilttiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SilttiApp.swift; sourceTree = "<group>"; };
 		FD9998D52CB6CF9A00E1EAF5 /* SilttiUniffi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SilttiUniffi.swift; sourceTree = "<group>"; };
 		FD9998E52CB6CFB800E1EAF5 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		FDA1FDAA2CBD659A000EC722 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +72,7 @@
 		FD15055C2CAAC26700995EB8 = {
 			isa = PBXGroup;
 			children = (
+				FDA1FDAA2CBD659A000EC722 /* README.md */,
 				FD9998D62CB6CF9A00E1EAF5 /* Siltti */,
 				FD3D6C1A2CAAD95200B6D068 /* Frameworks */,
 				FD1505662CAAC26700995EB8 /* Products */,
@@ -133,9 +132,7 @@
 				FD9998CE2CB6CF9A00E1EAF5 /* Views */,
 				FD9998CF2CB6CF9A00E1EAF5 /* Assets.xcassets */,
 				FD3D81762CB94C1C00C10FA9 /* Info.plist */,
-				FD9998D02CB6CF9A00E1EAF5 /* Info2.plist */,
-				FD9998D12CB6CF9A00E1EAF5 /* NFC.swift */,
-				FD9998D22CB6CF9A00E1EAF5 /* NFC2.swift */,
+				FD9998D22CB6CF9A00E1EAF5 /* NFC.swift */,
 				FD9998D32CB6CF9A00E1EAF5 /* Siltti.entitlements */,
 				FD9998D42CB6CF9A00E1EAF5 /* SilttiApp.swift */,
 				FD9998D52CB6CF9A00E1EAF5 /* SilttiUniffi.swift */,
@@ -231,14 +228,13 @@
 				FD9998D72CB6CF9A00E1EAF5 /* TransmitScreen.swift in Sources */,
 				FD9998D82CB6CF9A00E1EAF5 /* ScannerView.swift in Sources */,
 				FD9998D92CB6CF9A00E1EAF5 /* SilttiApp.swift in Sources */,
-				FD9998DA2CB6CF9A00E1EAF5 /* NFC.swift in Sources */,
 				FD9998DB2CB6CF9A00E1EAF5 /* MainScreen.swift in Sources */,
 				FD9998DC2CB6CF9A00E1EAF5 /* Destination.swift in Sources */,
 				FD9998DD2CB6CF9A00E1EAF5 /* NewAddressScreen.swift in Sources */,
 				FD9998E62CB6CFB800E1EAF5 /* Utils.swift in Sources */,
 				FD9998DE2CB6CF9A00E1EAF5 /* SilttiUniffi.swift in Sources */,
 				FD9998DF2CB6CF9A00E1EAF5 /* NetworksScreen.swift in Sources */,
-				FD9998E02CB6CF9A00E1EAF5 /* NFC2.swift in Sources */,
+				FD9998E02CB6CF9A00E1EAF5 /* NFC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -3,11 +3,11 @@ import SwiftUI
 typealias TransmitData = Action
 
 struct TransmitScreen: View {
-    @StateObject var nfc: NFC2
+    @StateObject var nfc: NFC
     @Environment(\.dismiss) var dismiss
     
     init(data: TransmitData) {
-        _nfc = .init(wrappedValue: NFC2(data: data))
+        _nfc = .init(wrappedValue: NFC(data: data))
     }
     
     var body: some View {
