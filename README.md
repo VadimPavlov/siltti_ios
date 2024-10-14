@@ -12,5 +12,5 @@
 4. Use `Status/Read/Write` buttons for getting `NDEF Status/NDEF Message/Write APDU with payload` in endless cycle (until error is triggered)
 
 ## Links
-https://metadata.parity.io/#/polkadot
-https://polkadot.js.org/apps/#/accounts
+- https://metadata.parity.io/#/polkadot
+- https://polkadot.js.org/apps/#/accounts
