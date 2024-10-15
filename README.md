@@ -1,5 +1,9 @@
 # siltti_ios
 
+## GIT LFS
+Compiled SilttiUnifiFFI.xcframework is tracked by GIT LFS
+Install `git-lfs` tool and get it with `git-lfs fetch` command
+
 ## Rust
 1. Add this to `uniffi.toml`:
 ```[bindings.swift]
