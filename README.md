@@ -1,9 +1,13 @@
 # siltti_ios
 
 ## Rust
-1. Put ios_build.sh in rust folder of siltti project
-2. run `sh ios_build.sh` from it
-3. It will create `SilttiUniffiFFI.xcframework` and `SilttiUniffi.swift`, add them into iOS project
+1. Add this to `uniffi.toml`:
+```[bindings.swift]
+module_name = "SilttiUniffi"
+cdylib_name = "siltti"```
+2. Put ios_build.sh in rust folder of siltti project
+3. run `sh ios_build.sh` from it
+4. It will create `SilttiUniffiFFI.xcframework` and `SilttiUniffi.swift`, add them into iOS project
 
 ## iOS
 1. Run project on a real device supporting iOS 16+. Allow camera permission

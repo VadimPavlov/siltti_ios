@@ -15,6 +15,8 @@ final class NFC: NSObject, ObservableObject {
     @Published var error: String?
     @Published var status = ""
     @Published var log: [String] = []
+    @Published var reconnect = false
+    @Published var timer: TimeInterval = 15
     
     init(data: TransmitData) {
         self.data = data
@@ -22,6 +24,8 @@ final class NFC: NSObject, ObservableObject {
     }
     
     func start(process: Process) {
+        self.process = nil
+        session?.invalidate()
         self.process = process
         error = nil
         log = []
@@ -43,66 +47,78 @@ extension NFC: NFCTagReaderSessionDelegate {
     
     func tagReaderSession(_ session: NFCTagReaderSession, didInvalidateWithError error: any Error) {
         guard let process = self.process else { return }
-        // auto-reconnect session on failure
-//        DispatchQueue.main.async {
-//            if self.session == nil {
-//                print("restarting session")
-//                self.start(process: process)
-//            } else if let nfcError = error as? NFCReaderError, nfcError.code == .readerSessionInvalidationErrorSystemIsBusy {
-//                print("system is busy")
-//                self.start(process: process)
-//            }
+        if reconnect {
+            // auto-reconnect session on failure
+            DispatchQueue.main.async {
+                if self.session == nil {
+                    print("restarting session")
+                    self.start(process: process)
+                } else if let nfcError = error as? NFCReaderError, nfcError.code == .readerSessionInvalidationErrorSystemIsBusy {
+                    print("system is busy")
+                    self.start(process: process)
+                }
+                self.error = error.localizedDescription
+            }
+        } else {
             self.error = error.localizedDescription
-//        }
+        }
+    }
+        
+    func tagReaderSession(_ session: NFCTagReaderSession, didDetect tags: [NFCTag]) {
+        self.error = nil
+        guard let tag = tags.first else { return }
+        Task { await connect(session: session, to: tag) }
+        if timer > 0 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + timer) {
+                self.error = "RESTART POLLING"
+                session.restartPolling()
+            }
+        }
     }
     
-    func tagReaderSession(_ session: NFCTagReaderSession, didDetect tags: [NFCTag]) {
-        guard let tag = tags.first else { return }
-        Task { @MainActor in
-            do {
-                try await session.connect(to: tag)
-                
-                switch tag {
-                case .feliCa(let felicaTag): error = "Tag is not iso7816 (actually is FeliCa: \(felicaTag)"
-                case .iso15693(let isoTag): error = "Tag is not iso7816 (actually is iso15693: \(isoTag)"
-                case .miFare(let mifareTag): error = "Tag is not iso7816 (actually is MiFare: \(mifareTag)"
-                case .iso7816(let isoTag):
-                    var counter = 0
-                    while true {
-                        switch process {
-                        case .status:
-                            let status = try await isoTag.queryNDEFStatus()
-                            log.append("Status: \(status.0.name), Capacity: \(status.1)")
-                        case .read:
-                            let message = try await isoTag.readNDEF()
-                            log.append("NDEFMessage: \(message)")
-                        case .write:
-                            
-                            // test which AID supported by tag
-                            // await selectAids(tag: isoTag)
-                            
-                            if let packet = data.makePacket() {
-                                let command = NFCISO7816APDU(instructionClass: 0x00, instructionCode: 0x00,
-                                                             p1Parameter: 0x00, p2Parameter: 0x00,
-                                                             data: packet, expectedResponseLength: -1)
-                                let response = try await isoTag.sendCommand(apdu: command)
-                                log.append("\(response)")
-                            } else {
-                                error = "Empty packet"
-                            }
-                        case nil:
-                            error = "Unknown operation"
-                            return
+    @MainActor
+    func connect(session: NFCTagReaderSession, to tag: NFCTag) async {
+        do {
+            try await session.connect(to: tag)
+            
+            switch tag {
+            case .feliCa(let felicaTag): error = "Tag is not iso7816 (actually is FeliCa: \(felicaTag)"
+            case .iso15693(let isoTag): error = "Tag is not iso7816 (actually is iso15693: \(isoTag)"
+            case .miFare(let mifareTag): error = "Tag is not iso7816 (actually is MiFare: \(mifareTag)"
+            case .iso7816(let isoTag):
+                var counter = 0
+                while true {
+                    switch process {
+                    case .status:
+                        let status = try await isoTag.queryNDEFStatus()
+                        log.append("Status: \(status.0.name), Capacity: \(status.1)")
+                    case .read:
+                        let message = try await isoTag.readNDEF()
+                        log.append("NDEFMessage: \(message)")
+                    case .write:
+                        if let packet = data.makePacket() {
+                            let command = NFCISO7816APDU(instructionClass: 0x00, instructionCode: 0x00,
+                                                         p1Parameter: 0x00, p2Parameter: 0x00,
+                                                         data: packet, expectedResponseLength: -1)
+                            let response = try await isoTag.sendCommand(apdu: command)
+                            log.append("\(response)")
+                        } else {
+                            error = "Empty packet"
                         }
-                        counter += 1
-                        log.append("Operations count: \(counter)")
+                    case nil:
+                        error = "Unknown operation"
+                        return
                     }
-                @unknown default:
-                    error = "Uknown tag type"
+                    counter += 1
+                    log.append("Operations count: \(counter)")
                 }
-                
-            } catch {
-                self.error = error.localizedDescription
+            @unknown default:
+                error = "Uknown tag type"
+            }
+            
+        } catch {
+            self.error = error.localizedDescription
+            if timer == 0 {
                 self.session = nil
                 session.invalidate()
             }

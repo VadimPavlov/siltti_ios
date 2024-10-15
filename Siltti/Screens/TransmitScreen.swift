@@ -21,6 +21,16 @@ struct TransmitScreen: View {
                 
                 Text(nfc.log.reversed().joined(separator: "\n")).padding(.top)
             }
+            VStack {
+                
+                Text("Polling timer: \(String(describing: Int(nfc.timer))) seconds")
+                Slider(value: $nfc.timer, in: 0...100)
+                
+                Toggle("Autorecconect session", isOn: $nfc.reconnect)
+            }
+            .padding()
+            .padding(.horizontal)
+            
             HStack {
                 Group {
                     Button("Status") {
@@ -33,7 +43,8 @@ struct TransmitScreen: View {
                         nfc.start(process: .write)
                     }
                 }.frame(maxWidth: .infinity)
-            }.buttonStyle(.bordered)
+            }
+            .buttonStyle(.bordered)
         }
         .navigationTitle("Transmit")
         .onDisappear {
