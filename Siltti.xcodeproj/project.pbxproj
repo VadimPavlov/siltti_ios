@@ -361,7 +361,7 @@
 				CODE_SIGN_ENTITLEMENTS = Siltti/Siltti.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 13;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Siltti/Preview Content\"";
 				DEVELOPMENT_TEAM = WTQFJ264ZG;
@@ -411,7 +411,7 @@
 				CODE_SIGN_ENTITLEMENTS = Siltti/Siltti.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 13;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Siltti/Preview Content\"";
 				DEVELOPMENT_TEAM = WTQFJ264ZG;

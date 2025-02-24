@@ -1,11 +1,12 @@
 # siltti_ios
 
 ## GIT LFS
-Compiled SilttiUnifiFFI.xcframework is tracked by GIT LFS
-Install `git-lfs` tool and get it with `git-lfs fetch` command
+If compiled SilttiUnifiFFI.xcframework is too large (>200MB), it should be tracked with Git Large File Storage (install `git-lfs` tool).
+The `.gitattributes` manages list of files to be stored separetly (currently `*.a`), default `git push` will do the job 
+To pull such files use `git-lfs fetch` command
 
 ## Rust
-1. Add this to `uniffi.toml`:
+1. Make sure `uniffi.toml` contains:
 ```[bindings.swift]
 module_name = "SilttiUniffi"
 cdylib_name = "siltti"```
@@ -14,11 +15,17 @@ cdylib_name = "siltti"```
 4. It will create `SilttiUniffiFFI.xcframework` and `SilttiUniffi.swift`, add them into iOS project
 
 ## iOS
+0. Device should be opt-in for installing apps via xcode, open `Settings > Privacy & Secure > Developer Mode > Enable toggle`
+
 1. Run project on a real device supporting iOS 16+. Allow camera permission
-2. On first launch, open Manage Networks and tap to add defaults (up to 3 networks)
+2. On first app launch, open Manage Networks and tap to add defaults (up to 3 networks)
 3. From main screen scan QR code with payload or send blank payload
 4. Use `Status/Read/Write` buttons for getting `NDEF Status/NDEF Message/Write APDU with payload` in endless cycle (until error is triggered)
 
-## Links
-- https://metadata.parity.io/#/polkadot
-- https://polkadot.js.org/apps/#/accounts
+
+## Test Flight
+1. To distribute a new build run Product > Archive > Distribute App > TestFlight
+2. After a while it will appear on a http://appstoreconnect.apple.com/ portal, under Apps > Sillti > Testflight
+3. Archive Post-Action will automatically increment minor build version (so next build could be uploaded to TestFlight)
+4. All users from `testers`(?) group will automatically be notified via email/push
+5. To add new users to a group, firstly invite them under `Users and Access` tab on a portal

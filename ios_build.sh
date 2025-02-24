@@ -13,10 +13,10 @@ mv bindings/SilttiUniffiFFI.modulemap bindings/module.modulemap
 xcodebuild -create-xcframework \
     -library ./target/aarch64-apple-ios/release/libsiltti.a \
     -headers ./bindings \
-    -output "ios/SilttiUniffiFFI.xcframework"
+    -output "../ios/SilttiUniffiFFI.xcframework"
 
 # 5. Move the generated Swift file for proper use in your iOS project
-mv bindings/SilttiUniffi.swift ios/SilttiUniffi.swift
+mv bindings/SilttiUniffi.swift ../ios/SilttiUniffi.swift
 
 # 6. Clean up the temporary bindings folder
 rm -rf bindings
